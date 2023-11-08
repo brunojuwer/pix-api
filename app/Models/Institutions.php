@@ -31,4 +31,9 @@ class Institutions extends Authenticatable
     {
         return $this->hasOne(ApiKeys::class);
     }
+
+    public static function findOrfailByCnpj(string $cnpj): self
+    {
+        return self::query()->where("cnpj", $cnpj)->first();
+    }
 }

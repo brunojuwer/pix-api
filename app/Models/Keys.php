@@ -10,6 +10,13 @@ class Keys extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'client_id',
+        'institutions_id',
+    ];
+
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Clients::class);
