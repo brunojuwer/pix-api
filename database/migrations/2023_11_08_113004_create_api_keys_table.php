@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('api_keys', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('public_key');
-            $table->string('secret_key');
+            $table->string('name')->nullable();
+            $table->string('public_key')->nullable();
+            $table->string('secret_key')->nullable();
             $table->timestamps();
         });
     }
