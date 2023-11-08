@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('cpf');
+            $table->string('cpf', 14)->unique();
             $table->string('name');
             $table->timestamps();
         });

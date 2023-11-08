@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('institutions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('cnpj');
+            $table->string('cnpj', 18)->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->foreignId('api_key_id')->references('id')->on('api_keys')->cascadeOnDelete();
             $table->timestamps();
