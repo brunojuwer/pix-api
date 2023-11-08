@@ -11,7 +11,7 @@ class StoreKeysRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreKeysRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "clientName" => "required",
+            "cpf"        => "required|max:14|min:14",
+            "keyName"    => "required|max:255",
+            "cnpj"       => "required|max:18|min:18"
         ];
     }
 }
