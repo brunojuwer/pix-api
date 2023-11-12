@@ -26,4 +26,9 @@ class Keys extends Model
     {
         return $this->belongsTo(Institutions::class);
     }
+
+    public static function findOrFailByName(string $name): self
+    {
+        return self::where('name', $name)->firstOrFail();
+    }
 }

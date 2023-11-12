@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreKeysRequest;
 use App\Models\Clients;
+use App\Models\Keys;
 use Illuminate\Http\Request;
 use App\Services\KeysService;
 
@@ -61,8 +62,10 @@ class KeysController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $name)
     {
-        //
+        $key = Keys::findOrFailByName($name);
+        $key->delete();
+        return response()->json([], 204);
     }
 }
