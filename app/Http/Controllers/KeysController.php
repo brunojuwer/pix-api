@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreKeysRequest;
 use App\Models\Clients;
-use App\Models\Institutions;
-use App\Models\Keys;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Services\KeysService;
 
 class KeysController extends Controller
 {
@@ -32,21 +30,8 @@ class KeysController extends Controller
      */
     public function store(StoreKeysRequest $request)
     {
-        $client = new Client;
-        $data        = $request->validated();
-        $institution = Institutions::findOrFailByCnpj($data['cnpj']);
-        
-        try {
-            $client = Clients::findOrFailByCpf($data['cpf']);
-        } catch (\Throwable $th) {
-            $client = Clients::createClient($data['clientName'], $data['cpf']);            
-        }
-
-        return Keys::create([
-                'name'            => $data['keyName'],
-                'client_id'       => $client['id'],
-                'institutions_id' => $institution['id'],
-            ]);
+        $data = $request->validated();
+        return KeysService::create(new Clients, $data);
     }
 
     /**

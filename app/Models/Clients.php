@@ -14,8 +14,6 @@ class Clients extends Model
         'cpf'
     ];
 
-
-
     public static function findOrFailByCpf(string $cpf) {
         return self::where('cpf', $cpf)->firstOrFail();
     }
