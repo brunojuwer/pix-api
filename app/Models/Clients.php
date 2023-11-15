@@ -25,4 +25,12 @@ class Clients extends Model
             'cpf' => $cpf
         ]);
     }
+
+    public static function findClientByClientKey($clientKey): self
+    {
+        return self::join("keys", "keys.client_id", "=", "clients.id")
+                ->where("keys.name", $clientKey)
+                ->select("clients.*")
+                ->firstOrFail();
+    }
 }

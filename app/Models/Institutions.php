@@ -37,4 +37,12 @@ class Institutions extends Authenticatable
     {
         return self::query()->where("cnpj", $cnpj)->first();
     }
+
+    public static function findInstitutionByClientKey($clientKey): self
+    {
+        return self::join("keys", "keys.institutions_id", "=", "institutions.id")
+                ->where("keys.name", $clientKey)
+                ->select("institutions.*")
+                ->firstOrFail();
+    }
 }
