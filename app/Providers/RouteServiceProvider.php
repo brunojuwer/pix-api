@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
-                ->prefix('pix-api/v1')
+                ->prefix('pix-api')
                 ->group(base_path('routes/api.php'));
         });
     }
