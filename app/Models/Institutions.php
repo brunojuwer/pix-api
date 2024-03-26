@@ -16,7 +16,6 @@ class Institutions extends Authenticatable
         'email',
         'password',
         'cnpj',
-        'api_key_id',
         'pix_url'
     ];
 

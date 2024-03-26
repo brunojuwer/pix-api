@@ -31,7 +31,7 @@ class StoreInstitutionRequest extends FormRequest
             ],
             'password' => 'required|min:5|max:255',
             'cnpj' => 'required|min:18|max:18|unique:institutions',
-            'pix_url' => 'required|regex:/^http:\/\/[a-zA-Z0-9.-]+:[0-9]+\/[a-zA-Z0-9\/]+$/',
+            'pix_url' => 'required',
         ];
     }
 }

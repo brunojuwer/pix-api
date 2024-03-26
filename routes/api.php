@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiKeyController;
 use App\Http\Controllers\InstitutionsController;
 use App\Http\Controllers\KeysController;
 use Illuminate\Http\Request;
@@ -11,3 +12,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/institutions', InstitutionsController::class);
 Route::apiResource('/keys', KeysController::class);
+Route::apiResource('/institutions/token', ApiKeyController::class);

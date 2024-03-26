@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('cnpj', 18)->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('api_key_id')->references('id')->on('api_keys')->cascadeOnDelete();
             $table->timestamps();
         });
     }

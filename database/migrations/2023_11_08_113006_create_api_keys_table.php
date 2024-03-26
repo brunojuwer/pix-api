@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('token')->nullable();
+            $table->foreignId('institution_id')->references('id')->on('institutions');
             $table->timestamps();
         });
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInstitutionRequest;
-use App\Models\ApiKeys;
 use App\Models\Institutions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -19,7 +18,6 @@ class InstitutionsController extends Controller
     public function store(StoreInstitutionRequest $request): Institutions
     {
         $data = $request->validated();
-        $data["api_key_id"] = ApiKeys::create()["id"];
         return Institutions::create($data);
     }
 
