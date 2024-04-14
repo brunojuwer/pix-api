@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\ApiKeyController;
+use App\Http\Controllers\InstitutionAuthController;
 use App\Http\Controllers\InstitutionsController;
 use App\Http\Controllers\KeysController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::apiResource('/institutions', InstitutionsController::class);
 Route::apiResource('/keys', KeysController::class);
-Route::apiResource('/institutions/token', ApiKeyController::class);
+
+Route::apiResource('/institutions/token', ApiKeyController::class)
+    ->middleware('auth:sanctum');
+
+Route::post('/login', [InstitutionAuthController::class, 'login']);
