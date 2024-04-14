@@ -9,21 +9,13 @@ use Illuminate\Http\Request;
 
 class InstitutionsController extends Controller
 {
-    public function index(): Collection
-    {
-        return Institutions::all();
-    }
 
-  
     public function store(StoreInstitutionRequest $request): Institutions
     {
         $data = $request->validated();
         return Institutions::create($data);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $cnpj): Institutions
     {
         return Institutions::query()->select()->where("cnpj", $cnpj)->first();
@@ -37,13 +29,5 @@ class InstitutionsController extends Controller
         $institution->update($data);
 
         return $institution;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
