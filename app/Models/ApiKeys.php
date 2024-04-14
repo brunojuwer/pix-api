@@ -16,17 +16,20 @@ class ApiKeys extends Model
         'institution_id',
     ];
 
-    public static function generate(string $name): string
+    public static function generate(string $name, int $id): string
     {
-        
+
+        if(static::alreadyHaveKey($id)){
+            static::deletePreviousToken($id);
+        }
         $token = static::generateToken();
-        
+
         $hashedToken = password_hash($token, PASSWORD_BCRYPT);
 
         self::create([
             'name' => $name,
             'token' => $hashedToken,
-            'institution_id' => 1
+            'institution_id' => $id
         ]);
 
         return $token;
@@ -39,6 +42,16 @@ class ApiKeys extends Model
     public static function validateToken(string $token, $id): bool
     {
         $hashedToken = self::find($id);
-        return password_verify($token, $hashedToken); 
+        return password_verify($token, $hashedToken);
+    }
+
+    public static function alreadyHaveKey($id): bool
+    {
+         return self::query()->where('institution_id', '=', $id)->exists();
+    }
+
+    public static function deletePreviousToken(int $id): void
+    {
+        self::query()->where('institution_id', '=', $id)->delete();
     }
 }

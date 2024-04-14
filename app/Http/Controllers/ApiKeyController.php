@@ -12,7 +12,9 @@ class ApiKeyController extends Controller
     {
         $data = $request->all();
 
-        $token = ApiKeys::generate($data['name']);
+        $id = $request->user()['id'];
+
+        $token = ApiKeys::generate($data['name'], $id);
 
         return response()->json([
             'access_token' => $token
