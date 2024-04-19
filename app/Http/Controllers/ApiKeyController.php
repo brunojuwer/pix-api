@@ -17,7 +17,7 @@ class ApiKeyController extends Controller
         $token = ApiKeys::generate($data['name'], $id);
 
         return response()->json([
-            'access_token' => $token
+            'api_key' => $token
         ]);
     }
 }

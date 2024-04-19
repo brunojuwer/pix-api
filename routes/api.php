@@ -12,7 +12,8 @@ Route::apiResource('/institutions', InstitutionsController::class)
 
 Route::post('/institutions', [InstitutionsController::class, 'store']);
 
-Route::apiResource('/keys', KeysController::class);
+Route::apiResource('/keys', KeysController::class)
+    ->middleware('institution.api.key');
 
 Route::apiResource('/institutions/token', ApiKeyController::class)
     ->middleware('auth:sanctum');

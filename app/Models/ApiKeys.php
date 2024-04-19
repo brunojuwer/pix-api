@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ApiKeys extends Model
 {
@@ -15,6 +16,11 @@ class ApiKeys extends Model
         'token',
         'institution_id',
     ];
+
+    public function institution(): BelongsTo
+    {
+        return $this->belongsTo(Institutions::class);
+    }
 
     public static function generate(string $name, int $id): string
     {
